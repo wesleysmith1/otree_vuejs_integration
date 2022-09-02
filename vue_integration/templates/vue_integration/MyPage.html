@@ -1,12 +1,49 @@
-{% extends "global/Page.html" %}
-{% load otree static %}
+{% extends "global/Base.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
 
 {% block title %}
-    Page title
+    Vuejs Integration
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 {% endblock %}
 
 {% block content %}
+<div class="otree-body container">
+    
+    {% verbatim %}
+    <div id="app">
+        <button class="btn btn-secondary" type="button" @click="count++">
+            Count is: {{ count }}
+        </button>
+    </div>
+    {% endverbatim %}
+    
+</div>
 
-    {% next_button %}
+<br>
+
+{% next_button %}
+
+{% block javascript %}
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function () {
+        
+        var app = new Vue({
+            el: '#app',
+            data: {
+                count: 0
+            },
+        });
+
+    });
+
+</script>
+
+{% endblock %}
 
 {% endblock %}
